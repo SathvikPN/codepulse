@@ -1,0 +1,20 @@
+FROM alpine:latest
+
+# Install SQLite
+RUN apk add --no-cache sqlite sqlite-libs
+
+# Create the database directory
+RUN mkdir -p /var/lib/sqlite
+
+# Set the working directory
+WORKDIR /var/lib/sqlite
+
+# Copy the database schema (if any)
+COPY data/codepulseDB.db .
+
+# Expose the SQLite port
+EXPOSE 5432
+
+# Set the entrypoint to start the SQLite server
+ENTRYPOINT ["sqlite3", "-interactive", "codepulseDB.db"]
+

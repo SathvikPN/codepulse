@@ -2,11 +2,13 @@ package codepulse
 
 import (
 	"codepulse/internal/middleware"
+	"database/sql"
 	"net/http"
 )
 
 type Codepulse struct {
 	httpMultiplexer *http.ServeMux
+	db              *sql.DB
 }
 
 func NewCodepulse() *Codepulse {

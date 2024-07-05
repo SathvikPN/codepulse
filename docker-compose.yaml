@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+
+  codepulse_db:
+    build:
+      context: .
+      dockerfile: Dockerfile.db
+    volumes:
+      - ./data:/var/lib/codepulseDB
+    networks:
+      - codepulse-network
+
+  codepulse:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - codepulse-network
+    depends_on:
+      - codepulse_db
+
+volumes:
+  sqlite-data:
+
+networks:
+  codepulse-network:
+    
