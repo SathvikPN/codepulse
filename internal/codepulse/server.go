@@ -5,22 +5,22 @@ import (
 	"net/http"
 )
 
-type Server struct {
-	mux *http.ServeMux
+type Codepulse struct {
+	httpMultiplexer *http.ServeMux
 }
 
-func NewServer() *Server {
+func NewCodepulse() *Codepulse {
 	mux := http.NewServeMux()
-	server := &Server{mux: mux}
+	server := &Codepulse{httpMultiplexer: mux}
 	server.routes()
 	return server
 }
 
 // URL Mappings
-func (s *Server) routes() {
-	s.mux.Handle("/welcome", middleware.RateLimiting(middleware.Logging(http.HandlerFunc(s.welcomeHandler))))
+func (app *Codepulse) routes() {
+	app.httpMultiplexer.Handle("/welcome", middleware.RateLimiting(middleware.Logging(http.HandlerFunc(app.welcomeHandler))))
 }
 
-func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	s.mux.ServeHTTP(w, r)
+func (app *Codepulse) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	app.httpMultiplexer.ServeHTTP(w, r)
 }

@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func (s *Server) welcomeHandler(w http.ResponseWriter, r *http.Request) {
+func (s *Codepulse) welcomeHandler(w http.ResponseWriter, r *http.Request) {
 	response := map[string]interface{}{
 		"app":              "CodePulse",
 		"remoteAddress":    r.RemoteAddr,
