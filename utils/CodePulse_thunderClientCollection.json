@@ -1,0 +1,173 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "CodePulse",
+    "collectionId": "efc32c67-aa75-4cc0-bd78-600aec2e37fb",
+    "dateExported": "2024-07-05T11:55:01.005Z",
+    "version": "1.2",
+    "folders": [
+        {
+            "_id": "3dddb6fe-a4d2-4e0e-9653-c30eff6b5290",
+            "name": "GitHub",
+            "containerId": "",
+            "created": "2024-07-03T16:49:34.548Z",
+            "sortNum": 10000,
+            "settings": {
+                "docs": "GitHub Profile Response\n```json\n{\n  \"login\": \"SathvikPN\",\n  \"id\": 66002135,\n  \"node_id\": \"MDQ6VXNlcjY2MDAyMTM1\",\n  \"avatar_url\": \"https://avatars.githubusercontent.com/u/66002135?v=4\",\n  \"gravatar_id\": \"\",\n  \"url\": \"https://api.github.com/users/SathvikPN\",\n  \"html_url\": \"https://github.com/SathvikPN\",\n  \"followers_url\": \"https://api.github.com/users/SathvikPN/followers\",\n  \"following_url\": \"https://api.github.com/users/SathvikPN/following{/other_user}\",\n  \"gists_url\": \"https://api.github.com/users/SathvikPN/gists{/gist_id}\",\n  \"starred_url\": \"https://api.github.com/users/SathvikPN/starred{/owner}{/repo}\",\n  \"subscriptions_url\": \"https://api.github.com/users/SathvikPN/subscriptions\",\n  \"organizations_url\": \"https://api.github.com/users/SathvikPN/orgs\",\n  \"repos_url\": \"https://api.github.com/users/SathvikPN/repos\",\n  \"events_url\": \"https://api.github.com/users/SathvikPN/events{/privacy}\",\n  \"received_events_url\": \"https://api.github.com/users/SathvikPN/received_events\",\n  \"type\": \"User\",\n  \"site_admin\": false,\n  \"name\": \"Sathvik PN\",\n  \"company\": null,\n  \"blog\": \"www.linkedin.com/in/sathvik-p-n\",\n  \"location\": null,\n  \"email\": null,\n  \"hireable\": null,\n  \"bio\": null,\n  \"twitter_username\": null,\n  \"public_repos\": 33,\n  \"public_gists\": 0,\n  \"followers\": 3,\n  \"following\": 6,\n  \"created_at\": \"2020-05-27T07:27:04Z\",\n  \"updated_at\": \"2024-06-20T19:26:37Z\"\n}\n```"
+            }
+        },
+        {
+            "_id": "9132981c-13df-44e5-95b3-88d670676223",
+            "name": "Leetcode",
+            "containerId": "",
+            "created": "2024-07-03T16:49:41.950Z",
+            "sortNum": 20000,
+            "settings": {
+                "docs": "Community Collected GraphQL queries\n- https://github.com/akarsh1995/leetcode-graphql-queries"
+            }
+        },
+        {
+            "_id": "e9b29a59-e627-4264-8fa7-1fa9a2cae485",
+            "name": "CodePulse",
+            "containerId": "",
+            "created": "2024-07-04T10:41:48.666Z",
+            "sortNum": 30000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "a0340244-0f2b-4f3b-ae3a-8c8e239d5687",
+            "colId": "efc32c67-aa75-4cc0-bd78-600aec2e37fb",
+            "containerId": "3dddb6fe-a4d2-4e0e-9653-c30eff6b5290",
+            "name": "GitHub Profile",
+            "url": "https://api.github.com/users/SathvikPN",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-07-03T16:49:55.926Z",
+            "modified": "2024-07-04T09:57:00.190Z",
+            "headers": [
+                {
+                    "name": "User-Agent",
+                    "value": "Thunder Client (https://www.thunderclient.com)",
+                    "isDisabled": true
+                }
+            ]
+        },
+        {
+            "_id": "b53a1e9c-38e5-4b65-88a3-c1be3afd9663",
+            "colId": "efc32c67-aa75-4cc0-bd78-600aec2e37fb",
+            "containerId": "3dddb6fe-a4d2-4e0e-9653-c30eff6b5290",
+            "name": "Repos",
+            "url": "https://api.github.com/repos/SathvikPN/Solute/commits",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-07-03T17:25:43.417Z",
+            "modified": "2024-07-04T14:59:12.104Z",
+            "headers": []
+        },
+        {
+            "_id": "7e0cc5c6-db5d-4faf-be2c-6cc1704c1b90",
+            "colId": "efc32c67-aa75-4cc0-bd78-600aec2e37fb",
+            "containerId": "3dddb6fe-a4d2-4e0e-9653-c30eff6b5290",
+            "name": "Commits",
+            "url": "https://avatars.githubusercontent.com/u/66002135?v=4",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-07-03T17:29:52.350Z",
+            "modified": "2024-07-04T09:46:07.279Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "v",
+                    "value": "4",
+                    "isPath": false
+                }
+            ]
+        },
+        {
+            "_id": "f80c0d28-7a62-4ea0-86a3-489a85047728",
+            "colId": "efc32c67-aa75-4cc0-bd78-600aec2e37fb",
+            "containerId": "9132981c-13df-44e5-95b3-88d670676223",
+            "name": "LeetcodeProfile",
+            "url": "https://leetcode.com/graphql",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2024-07-04T09:51:26.387Z",
+            "modified": "2024-07-04T11:23:31.406Z",
+            "headers": [],
+            "body": {
+                "type": "graphql",
+                "raw": "",
+                "form": [],
+                "graphql": {
+                    "query": "query userPublicProfile($username: String!) {\n  matchedUser(username: $username) {\n    contestBadge {\n      name\n      expired\n      hoverText\n      icon\n    }\n    username\n    githubUrl\n    twitterUrl\n    linkedinUrl\n    profile {\n      ranking\n      userAvatar\n      realName\n      aboutMe\n      school\n      websites\n      countryName\n      company\n      jobTitle\n      skillTags\n      postViewCount\n      postViewCountDiff\n      reputation\n      reputationDiff\n      solutionCount\n      solutionCountDiff\n      categoryDiscussCount\n      categoryDiscussCountDiff\n    }\n  }\n}",
+                    "variables": "{\"username\": \"iSWE\"}"
+                }
+            }
+        },
+        {
+            "_id": "fc8cd2d1-f316-4715-a961-f217c793df60",
+            "colId": "efc32c67-aa75-4cc0-bd78-600aec2e37fb",
+            "containerId": "e9b29a59-e627-4264-8fa7-1fa9a2cae485",
+            "name": "Welcome",
+            "url": "http://localhost:8080/welcome?filter=hellllooooooooooooo",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2024-07-04T10:41:57.689Z",
+            "modified": "2024-07-04T18:56:17.047Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "filter",
+                    "value": "hellllooooooooooooo",
+                    "isPath": false
+                }
+            ]
+        },
+        {
+            "_id": "5736ade3-bf08-4cc1-a1be-a2ff27ae26dc",
+            "colId": "efc32c67-aa75-4cc0-bd78-600aec2e37fb",
+            "containerId": "e9b29a59-e627-4264-8fa7-1fa9a2cae485",
+            "name": "Compare",
+            "url": "http://localhost:8080/compare?github=sathvikpn&leetcode=sathvikpn",
+            "method": "GET",
+            "sortNum": 80000,
+            "created": "2024-07-04T10:54:33.683Z",
+            "modified": "2024-07-04T14:49:11.261Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "github",
+                    "value": "sathvikpn",
+                    "isPath": false
+                },
+                {
+                    "name": "leetcode",
+                    "value": "sathvikpn",
+                    "isPath": false
+                }
+            ]
+        },
+        {
+            "_id": "83b0f382-dad4-4b2b-928d-ce3f6f01ac9c",
+            "colId": "efc32c67-aa75-4cc0-bd78-600aec2e37fb",
+            "containerId": "9132981c-13df-44e5-95b3-88d670676223",
+            "name": "LeetcodeSubmissions",
+            "url": "https://leetcode.com/graphql",
+            "method": "GET",
+            "sortNum": 90000,
+            "created": "2024-07-04T11:20:33.189Z",
+            "modified": "2024-07-04T11:20:56.607Z",
+            "headers": [],
+            "body": {
+                "type": "graphql",
+                "raw": "",
+                "form": [],
+                "graphql": {
+                    "query": "query userProblemsSolved($username: String!) {\n  allQuestionsCount {\n    difficulty\n    count\n  }\n  matchedUser(username: $username) {\n    problemsSolvedBeatsStats {\n      difficulty\n      percentage\n    }\n    submitStatsGlobal {\n      acSubmissionNum {\n        difficulty\n        count\n      }\n    }\n  }\n}",
+                    "variables": "{\"username\": \"iSWE\"}"
+                }
+            }
+        }
+    ],
+    "ref": "zAuCE-LuPJ-urNwRfeDU4SzGeEinlH2YWS3qzqZb2_yv9KCCt-TaGJyWqz5L0ziE2kGbyvvM-IKlqmSR6_zaeA"
+}
