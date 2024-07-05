@@ -4,7 +4,7 @@ build:
 	docker build -t codepulse-img .
 
 run:
-	docker run --name codepulse-container -d -p 8080:8080 codepulse 
+	docker run --name codepulse-container -d -p 8080:8080 codepulse-img 
 
 clean:
 	docker rm -f codepulse-container

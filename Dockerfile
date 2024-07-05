@@ -11,7 +11,8 @@ RUN go mod download
 
 COPY . .
 
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /codepulse cmd/codepulse/main.go
+ARG VERSION=0.0.1
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "-X main.Version=${VERSION}" -o /codepulse cmd/codepulse/main.go
 
 # Stage 2: Create the runtime image
 FROM scratch
