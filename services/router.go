@@ -8,7 +8,9 @@ func Router() *gin.Engine {
 	router.Use(gin.Recovery())
 	api := router.Group("/api")
 
+	// register routes
 	api.GET("/welcome", WelcomeHandler)
+	api.GET("/compare", compareHandler)
 
 	return router
 }

@@ -47,8 +47,8 @@ func createTables(db *sql.DB) error {
 	endQuery := `(
   		id SERIAL PRIMARY KEY,
 		name VARCHAR(50),
- 		github_username VARCHAR(50) UNIQUE,
-  		leetcode_username VARCHAR(50) UNIQUE);`
+ 		github_username VARCHAR(50),
+  		leetcode_username VARCHAR(50));`
 
 	_, err := db.Exec(startQuery + tableName + endQuery)
 	if err != nil {
@@ -60,12 +60,13 @@ func createTables(db *sql.DB) error {
 	return nil
 }
 
-// func InsertUser(name, ip string) error {
-// 	db := connectDB()
-// 	insertQuery := fmt.Sprintf("INSERT INTO Users(name, ip) VALUES(%s, %s)", name, ip)
-// 	_, err := db.Exec(insertQuery)
-// 	return err
-// }
+func InsertUser(name, ip string) error {
+	db := connectDB()
+	insertQuery := "INSERT INTO users(name, ip) VALUES($1, $2)"
+	_, err := db.Exec(insertQuery, name, ip)
+	log.Println("query: ", insertQuery)
+	return err
+}
 
 // // insert post into db, returns inserted postID on success
 // func InsertPost(post models.Post) int64 {

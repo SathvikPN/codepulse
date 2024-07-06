@@ -7,11 +7,7 @@ import (
 )
 
 func main() {
-	err := services.InitDB()
-	if err != nil {
-		log.Fatalf("database initialization failed, [err] %v", err)
-	}
-
+	services.InitDB()
 	router := services.Router()
 	if err := router.Run(":8080"); err != nil {
 		log.Fatalf("REST api server failed, [err] %v", err)
