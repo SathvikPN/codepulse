@@ -4,34 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LeetCode Profile Viewer</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        #output {
-            margin-top: 20px;
-        }
-        pre {
-            background-color: #f4f4f4;
-            padding: 10px;
-            border: 1px solid #ddd;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
 </head>
 <body>
-    <h1>LeetCode Profile Viewer</h1>
+    <h1>CodePulse</h1>
     <form id="leetcodeForm">
-        <label for="username">LeetCode Username:</label>
-        <input type="text" id="username" name="username" required>
-        <button type="submit">Get Profile</button>
+        <label for="lc">
+            <input type="text" id="leetcodeUsernameId" name="leetcodeUsername" placeholder="leetcode username" class="usernameInput" required> 
+        </label>
+
+        <label for="gh">
+            <input type="text" id="GitHubUsernameId" name="GitHubUsername" placeholder="github username" class="usernameInput" required> 
+        </label>
+        
+        <button type="submit">Get pulse</button>
     </form>
     <div id="output"></div>
 
     <script>
         document.getElementById('leetcodeForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            const username = document.getElementById('username').value;
+            const username = document.getElementById('leetcodeUsernameId').value;
 
             fetch('http://localhost:8080/leetcodestat', {
                 method: 'POST',
