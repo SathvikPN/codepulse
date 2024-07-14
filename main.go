@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"time"
 )
 
 type RequestPayload struct {
@@ -42,7 +43,7 @@ type LeetCodeResponse struct {
 				JobTitle                 string   `json:"jobTitle"`
 				SkillTags                []string `json:"skillTags"`
 				PostViewCount            int      `json:"postViewCount"`
-				PostViewCountDiff        int      `json:"postViewCountDiff"`
+				PostViewCountDiff        int      `json="postViewCountDiff"`
 				Reputation               int      `json:"reputation"`
 				ReputationDiff           int      `json:"reputationDiff"`
 				SolutionCount            int      `json:"solutionCount"`
@@ -52,6 +53,52 @@ type LeetCodeResponse struct {
 			} `json:"profile"`
 		} `json:"matchedUser"`
 	} `json:"data"`
+}
+
+// LoggingMiddleware logs the incoming HTTP request and the outgoing HTTP response
+func LoggingMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		startTime := time.Now()
+
+		// Log request details
+		log.Printf("Incoming request: %s %s from %s", r.Method, r.URL.Path, r.RemoteAddr)
+
+		// Capture the response
+		responseRecorder := &ResponseRecorder{ResponseWriter: w, StatusCode: http.StatusOK}
+		next.ServeHTTP(responseRecorder, r)
+
+		// Log response details
+		duration := time.Since(startTime)
+		log.Printf("Response: %d %s in %v", responseRecorder.StatusCode, http.StatusText(responseRecorder.StatusCode), duration)
+	})
+}
+
+// ResponseRecorder is used to capture the HTTP status code of the response
+type ResponseRecorder struct {
+	http.ResponseWriter
+	StatusCode int
+}
+
+func (rr *ResponseRecorder) WriteHeader(statusCode int) {
+	rr.StatusCode = statusCode
+	rr.ResponseWriter.WriteHeader(statusCode)
+}
+
+// CORS Middleware
+func CORSMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
+		// Handle preflight requests
+		if r.Method == http.MethodOptions {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+
+		next.ServeHTTP(w, r)
+	})
 }
 
 func leetCodeStatHandler(w http.ResponseWriter, r *http.Request) {
@@ -139,7 +186,12 @@ func leetCodeStatHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/leetcodestat", leetCodeStatHandler)
+	mux := http.NewServeMux()
+	mux.HandleFunc("/leetcodestat", leetCodeStatHandler)
+
+	loggedMux := LoggingMiddleware(mux)
+	corsMux := CORSMiddleware(loggedMux)
+
 	log.Println("Server is running on port 8080...")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":8080", corsMux))
 }

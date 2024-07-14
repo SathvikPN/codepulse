@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode Profile Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #output {
+            margin-top: 20px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>LeetCode Profile Viewer</h1>
+    <form id="leetcodeForm">
+        <label for="username">LeetCode Username:</label>
+        <input type="text" id="username" name="username" required>
+        <button type="submit">Get Profile</button>
+    </form>
+    <div id="output"></div>
+
+    <script>
+        document.getElementById('leetcodeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+
+            fetch('http://localhost:8080/leetcodestat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username: username })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const output = document.getElementById('output');
+                output.innerHTML = '<h2>Profile Data</h2>';
+                output.innerHTML += '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                const output = document.getElementById('output');
+                output.innerHTML = '<h2>Error</h2>';
+                output.innerHTML += '<p>' + error + '</p>';
+            });
+        });
+    </script>
+</body>
+</html
