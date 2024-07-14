@@ -1,0 +1,66 @@
+### Understanding CORS and Why Frontend Alone Cannot Resolve It
+
+#### What is CORS?
+
+CORS (Cross-Origin Resource Sharing) is a security feature implemented by web browsers to prevent malicious websites from making unauthorized requests to other sites. It is designed to mitigate the risks associated with cross-origin HTTP requests that can be exploited in various ways, such as Cross-Site Request Forgery (CSRF) and Cross-Site Scripting (XSS).
+
+By default, web browsers block cross-origin requests (requests made from one domain to another domain) unless the target server explicitly allows them. This is achieved through HTTP headers.
+
+#### How CORS Works
+
+When a web page (origin) tries to make a request to a different domain (cross-origin), the browser sends a preflight request (an HTTP OPTIONS request) to the target server to check if the cross-origin request is allowed. The server must respond with appropriate CORS headers to indicate that it permits the request from the specific origin.
+
+Here are some key headers involved in CORS:
+
+- **Access-Control-Allow-Origin**: Specifies which origins are allowed to access the resource.
+- **Access-Control-Allow-Methods**: Specifies which HTTP methods are allowed for cross-origin requests.
+- **Access-Control-Allow-Headers**: Specifies which headers can be used in the actual request.
+
+For example, a server response with CORS headers might look like this:
+
+```
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: GET, POST, OPTIONS
+Access-Control-Allow-Headers: Content-Type
+```
+
+This indicates that the server allows requests from any origin (`*`), using the specified methods and headers.
+
+#### Why Frontend Alone Cannot Resolve CORS Errors
+
+CORS policies are enforced by the browser, and the frontend code (JavaScript, HTML) cannot modify these policies directly. This is because allowing the frontend to control CORS would defeat the purpose of the security measure, making it possible for malicious scripts to bypass the restrictions.
+
+The server must set the appropriate CORS headers in its responses to indicate which origins are permitted to access its resources. Without these headers, the browser will block the request and display a CORS error.
+
+### Why a Proxy Server is Needed
+
+#### The Role of a Proxy Server in Resolving CORS
+
+A proxy server can act as an intermediary between the client (web browser) and the target server. By routing the request through the proxy server, you can effectively bypass the CORS restrictions. The proxy server handles the cross-origin request on behalf of the client and then forwards the response back to the client.
+
+Here's how it works:
+
+1. **Client Request to Proxy Server**: The client sends the request to the proxy server instead of the target server.
+2. **Proxy Server to Target Server**: The proxy server makes the actual request to the target server.
+3. **Response Handling**: The target server responds to the proxy server, which then forwards the response to the client, optionally adding the necessary CORS headers.
+
+#### Why Use a Proxy Server?
+
+- **Security**: Proxy servers can add an additional layer of security, controlling and monitoring traffic between the client and the server.
+- **CORS Management**: They can modify responses to include the necessary CORS headers, allowing cross-origin requests to succeed.
+- **Load Balancing**: Proxies can distribute requests across multiple servers to balance the load and improve performance.
+
+### Example: Using CORS Anywhere Proxy
+
+In the previous response, we used `CORS Anywhere`, a popular proxy service that handles CORS for you. Here’s a recap of how it works:
+
+- **Proxy URL**: `https://cors-anywhere.herokuapp.com/`
+- **API Request**: The client sends the request to `https://cors-anywhere.herokuapp.com/http://localhost:8080/leetcodestat`.
+- **Proxy Handling**: `CORS Anywhere` makes the request to `http://localhost:8080/leetcodestat` and returns the response, adding the appropriate CORS headers.
+
+This method allows the client to receive the response without encountering CORS errors because the browser sees the response coming from a permitted origin (the proxy server).
+
+### Conclusion
+
+CORS is an essential security feature that prevents unauthorized cross-origin requests, protecting users and servers from various attacks. Frontend code alone cannot bypass CORS restrictions due to browser-enforced security policies. Instead, a proxy server can be used to handle cross-origin requests, adding the necessary headers to allow these requests. This approach maintains security while enabling the desired functionality.

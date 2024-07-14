@@ -1,0 +1,45 @@
+create a lightweight server in golang that does the following.
+- listens to /leetcodestat endpoint and retrieves the leetcode username string from the request payload over REST api.
+- uses this leetcode username and makes a graphql call to leetcode graphql endpoint ```https://leetcode.com/graphql``` with the query ```			query userPublicProfile($username: String!) {
+				matchedUser(username: $username) {
+					contestBadge {
+						name
+						expired
+						hoverText
+						icon
+					}
+					username
+					githubUrl
+					twitterUrl
+					linkedinUrl
+					profile {
+						ranking
+						userAvatar
+						realName
+						aboutMe
+						school
+						websites
+						countryName
+						company
+						jobTitle
+						skillTags
+						postViewCount
+						postViewCountDiff
+						reputation
+						reputationDiff
+						solutionCount
+						solutionCountDiff
+						categoryDiscussCount
+						categoryDiscussCountDiff
+					}
+				}
+			}```
+- gets the response from leetcode grapqhl and serves it back as a json response in /leetcodestat endpoint
+
+
+
+index.html:1 Access to fetch at 'http://localhost:8080/leetcodestat' from origin 'null' 
+has been blocked by CORS policy: Response to preflight request doesn't pass access control check: 
+No 'Access-Control-Allow-Origin' header is present on the requested resource. 
+If an opaque response serves your needs, 
+set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
